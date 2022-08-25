@@ -1,0 +1,121 @@
+linters-settings:
+  govet:
+    check-shadowing: true
+    settings:
+      printf:
+        funcs:
+          - (github.com/golangci/golangci-lint/pkg/logutils.Log).Infof
+          - (github.com/golangci/golangci-lint/pkg/logutils.Log).Warnf
+          - (github.com/golangci/golangci-lint/pkg/logutils.Log).Errorf
+          - (github.com/golangci/golangci-lint/pkg/logutils.Log).Fatalf
+  funlen:
+    lines: 100
+    statements: 50
+  goconst:
+    min-len: 2
+    min-occurrences: 2
+    ignore-tests: true
+  gocritic:
+    enabled-tags:
+      - diagnostic
+      - experimental
+      - opinionated
+      - performance
+      - style
+    disabled-checks:
+      - ifElseChain
+      - whyNoLint
+  gocyclo:
+    min-complexity: 20
+  gomnd:
+    settings:
+      mnd:
+        checks:
+          - argument
+          - case
+          - condition
+          - return
+          - operation
+        ignored-numbers: "100,2"
+  lll:
+    line-length: 140
+  misspell:
+    locale: UK
+    ignore-words:
+      - labor
+      - fulfillment
+      - center
+  nolintlint:
+    allow-unused: false 
+    allow-leading-space: true 
+    require-explanation: false 
+    require-specific: true 
+
+linters:
+  disable-all: true
+  enable:
+    - deadcode
+    - errcheck
+    - gosimple
+    - govet
+    - ineffassign
+    - staticcheck
+    - structcheck
+    - typecheck
+    - unused
+    - varcheck
+    - bodyclose
+    - dogsled
+    - dupl
+    - exportloopref
+    - forcetypeassert
+    - funlen
+    - gochecknoinits
+    - goconst
+    - gocritic
+    - gocyclo
+    - gofmt
+    - goimports
+    - revive
+    - gomnd
+    - gosec
+    - lll
+    - misspell
+    - nakedret
+    - nilerr
+    - nolintlint
+    - predeclared
+    - stylecheck
+    - thelper
+    - unconvert
+    - unparam
+    - whitespace
+    - rowserrcheck
+    - sqlclosecheck
+
+issues:
+  exclude-rules:
+    - path: _test\.go
+      linters:
+        - dupl
+        - forcetypeassert
+
+    - linters:
+        - govet
+      text: "shadow: declaration of \"(err|ok|ctx)\""
+
+    - linters:
+        - gochecknoinits
+      path: main\.go
+
+    - linters:
+        - lll
+      source: "^//go:generate "
+
+run:
+  timeout: 4m
+
+rules:
+  - linters:
+      - dupl
+    severity: info
