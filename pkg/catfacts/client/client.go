@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"io"
+	"net/http"
 	"net/url"
 
 	"github.com/hashicorp/go-retryablehttp"
@@ -15,21 +16,20 @@ type CatFact struct {
 	Length int    `json:"length"`
 }
 
-type client struct {
+type Client struct {
 	baseURL string
-	client *retryablehttp.Client
+	client  *retryablehttp.Client
 }
 
-func NewClient(url string) (*client, error) {
-	return &client{
-		baseURL: url,
-		client: retryablehttp.NewClient(),
+func NewClient(baseURL string) (*Client, error) {
+	return &Client{
+		baseURL: baseURL,
+		client:  retryablehttp.NewClient(),
 	}, nil
 }
 
 // Get makes a http GET request, used retrieve a fact about cats.
-func (c *client) Get(ctx context.Context, path string) (*CatFact, error) {
-
+func (c *Client) Get(ctx context.Context, path string) (*CatFact, error) {
 	reqURL, err := url.Parse(c.baseURL)
 	if err != nil {
 		return nil, err
@@ -45,9 +45,10 @@ func (c *client) Get(ctx context.Context, path string) (*CatFact, error) {
 	if err != nil {
 		return nil, err
 	}
+	defer response.Body.Close()
 
 	switch response.StatusCode {
-	case 200:
+	case http.StatusOK:
 		body, err := io.ReadAll(response.Body)
 		if err != nil {
 			return nil, err
