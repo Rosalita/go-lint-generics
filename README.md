@@ -32,5 +32,9 @@ golangci-lint run
 
 This error is explicitly listed on [https://github.com/golangci/golangci-lint/issues/2649](https://github.com/golangci/golangci-lint/issues/2649)
 
+It also looks like there was a new issue raised 8 days ago 
+[https://github.com/golangci/golangci-lint/issues/3107](https://github.com/golangci/golangci-lint/issues/3107)
+
 - Go critic has an amber light meaning it is partially supported.
-- Running linting locally on Go `1.19` warnings are displayed for `rowserrcheck`, `sqlclosecheck` and `structcheck` the warning state that they are disabled because of generics.
+- Running linting locally on Go `1.19` warnings are displayed for `rowserrcheck`, `sqlclosecheck` and `structcheck` the warning state that they are disabled because of generics.$ golangci-lint version
+

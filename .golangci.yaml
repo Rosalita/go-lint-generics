@@ -15,16 +15,16 @@ linters-settings:
     min-len: 2
     min-occurrences: 2
     ignore-tests: true
-  #gocritic:
-   # enabled-tags:
-     # - diagnostic
-     # - experimental
-     # - opinionated
-     # - performance
-     # - style
-    #disabled-checks:
-     # - ifElseChain
-     # - whyNoLint
+  gocritic:
+    enabled-tags:
+      - diagnostic
+      - experimental
+      - opinionated
+      - performance
+      - style
+    disabled-checks:
+      - ifElseChain
+      - whyNoLint
   gocyclo:
     min-complexity: 20
   gomnd:
@@ -72,7 +72,7 @@ linters:
     - funlen
     - gochecknoinits
     - goconst
-   # - gocritic
+    - gocritic
     - gocyclo
     - gofmt
     - goimports

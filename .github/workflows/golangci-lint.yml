@@ -4,6 +4,10 @@ on:
     branches:
       - main
   pull_request:
+
+# env:
+#   GOROOT: /usr/local/go
+
 permissions:
   contents: read
   # Optional: allow read access to pull request. Use with `only-new-issues` option.
@@ -17,6 +21,8 @@ jobs:
         with:
           go-version: 1.19
       - uses: actions/checkout@v3
+      - name: go env
+        run: go env
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v3
         with:
