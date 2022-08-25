@@ -3,6 +3,7 @@ package catfacts_test
 import (
 	"context"
 	"errors"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -21,12 +22,18 @@ func mockCatFactHandler(rw http.ResponseWriter, req *http.Request) {
 			"length": 92
 			}`
 		rw.WriteHeader(200)
-		rw.Write([]byte(responseJSON))
+		_, err := rw.Write([]byte(responseJSON))
+		if err != nil {
+			fmt.Println(err)
+		}
 
 	case req.URL.String() == "/foo" && req.Method == "GET":
 		responseJSON := `{"message":"Not Found","code":404}`
 		rw.WriteHeader(404)
-		rw.Write([]byte(responseJSON))
+		_, err := rw.Write([]byte(responseJSON))
+		if err != nil {
+			fmt.Println(err)
+		}
 
 	default:
 		rw.WriteHeader(500)
@@ -47,8 +54,8 @@ func TestGetCatFact(t *testing.T) {
 			},
 		},
 		{
-			path:           "/foo",
-			expectedErr:    errors.New("status code not ok"),
+			path:        "/foo",
+			expectedErr: errors.New("status code not ok"),
 		},
 	}
 
