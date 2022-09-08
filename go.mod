@@ -1,6 +1,6 @@
 module github.com/Rosalita/go-lint-generics
 
-go 1.17
+go 1.19
 
 require (
 	github.com/hashicorp/go-retryablehttp v0.7.1
