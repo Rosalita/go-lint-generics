@@ -1,0 +1,21 @@
+# https://taskfile.dev
+
+version: '3'
+
+silent: true
+
+tasks:
+  lint:
+    desc: lint all files
+    cmds:
+      - golangci-lint run ./...
+  
+  fmt:
+    desc: format all files
+    cmds:
+      - go fmt ./...
+  
+  test:
+    desc: test all files
+    cmds: 
+      - go test -cover ./...
