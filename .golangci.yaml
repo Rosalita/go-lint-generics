@@ -36,34 +36,29 @@ linters-settings:
           - condition
           - return
           - operation
-        ignored-numbers: "100,2"
+        ignored-numbers: "10"
   lll:
     line-length: 140
   misspell:
     locale: UK
     ignore-words:
-      - labor
-      - fulfillment
-      - center
+      - color
   nolintlint:
     allow-unused: false 
-    allow-leading-space: true 
+    allow-leading-space: false 
     require-explanation: false 
     require-specific: true 
 
 linters:
   disable-all: true
   enable:
-    - deadcode
     - errcheck
     - gosimple
     - govet
     - ineffassign
     - staticcheck
-    - structcheck
     - typecheck
     - unused
-    - varcheck
     - bodyclose
     - dogsled
     - dupl
@@ -90,8 +85,6 @@ linters:
     - unconvert
     - unparam
     - whitespace
-    - rowserrcheck
-    - sqlclosecheck
 
 issues:
   exclude-rules:

@@ -34,3 +34,11 @@ This error is explicitly listed on [https://github.com/golangci/golangci-lint/is
 
 Tried bumping `golangci-lint` up to `1.49.0` this fixes gocritics rule guard failling to load rules.
 
+# Dependencies
+Install task with 
+```
+go install github.com/go-task/task/v3/cmd/task@latest
+```
+
+[Install golangci-lint](https://golangci-lint.run/usage/install/)
+
